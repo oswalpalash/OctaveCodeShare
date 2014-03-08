@@ -1,8 +1,8 @@
 =============
-Scipy Central
+OctaveCodeShare
 =============
 
-This is the web app serving http://scipy-central.org/, a source code
+This is the web app serving here(http://scipy-central.org/), a source code
 snippet sharing site.
 
 
@@ -51,9 +51,9 @@ For searching, you can optionally use Xapian instead of Whoosh:
 Installation
 ------------
 
-* Clone the SciPy Central code repository:
+* Clone the OctaveCodeShare code repository:
 
-    ``git clone https://github.com/scipy/SciPyCentral.git``
+    ``git clone https://github.com/oswalpalash/OctaveCodeShare.git``
 
 * Ensure the following Django settings are in your ``settings.py`` file:
 
@@ -95,8 +95,7 @@ Installation
   * ``ANALYTICS_SNIPPET = '...'``
   * ``LOGGING = {...}``: you need a logger called ``scipycentral``, see
     more information at http://docs.djangoproject.com/en/dev/topics/logging
-    and also see the ``settings.py`` file that is part of the SciPy
-    Central code repository.
+    and also see the ``settings.py`` file that is part of the OctaveCodeShare code repository.
 
 Run::
 
