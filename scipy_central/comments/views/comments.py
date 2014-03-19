@@ -29,8 +29,9 @@ def post_comment(request, using=None):
     This method is written with reference to
     django.contrib.comments.views.comments.post_comment() to make compatible with Ajax calls
     """
-    if not request.user.is_authenticated():
-        return HttpResponse('Unauthorized', status=401)
+	#Make Comments Available for non-registered users.
+    #if not request.user.is_authenticated():
+        #return HttpResponse('Unauthorized', status=401)
 
     if request.is_ajax():
         

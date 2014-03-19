@@ -17,8 +17,9 @@ def flag(request, comment_id):
     cannot be completed as expected.
         1) Error handling cannot be done using response attributes
     """
-    if not request.user.is_authenticated():
-        return HttpResponse('Unauthorized', status=401)
+	#Guest user can now modify, update or delete his comment.
+    #if not request.user.is_authenticated():
+        #return HttpResponse('Unauthorized', status=401)
 
     if request.method == "POST" and \
         request.is_ajax():
