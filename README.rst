@@ -5,7 +5,8 @@ OctaveCodeShare
 This is the web app serving here(http://scipy-central.org/), a source code
 snippet sharing site.
 
-
+CURRENT PROGRESS:
+-> Working On Commenting System. Making comments available for guest users.
 Development setup
 =================
 
