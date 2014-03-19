@@ -7,6 +7,7 @@ snippet sharing site.
 
 CURRENT PROGRESS:
 -> Working On Commenting System. Making comments available for guest users.
+
 Development setup
 =================
 
