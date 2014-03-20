@@ -81,6 +81,18 @@ def post_comment(request, using=None):
         if form.errors:
             return HttpResponse(simplejson.dumps(response), mimetype="application/json")
 
+		#Make Only 1 Comment per guest user in every post. After that require registration.
+		if not request.user.is_authenticated():
+			request.is_ajax():
+			data = {}
+			comment = get_object_or_404(comments.get_model(), pk=comment_id, site__pk=settings.SITE_ID)
+				comment.ip_address = request.META.get("REMOTE_ADDR", None)
+				comments_model = comments.get_model()
+				comment_list = comments_model.objects.filter(user = user_object,is_public = True,is_removed = False)
+				if not comment_list is null:
+					perform_delete(request, comment)
+					data['success'] = True
+				
         # Otherwise create the comment
         comment = form.get_comment_object()
         comment.ip_address = request.META.get("REMOTE_ADDR", None)
