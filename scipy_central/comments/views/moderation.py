@@ -17,10 +17,8 @@ def flag(request, comment_id):
     cannot be completed as expected.
         1) Error handling cannot be done using response attributes
     """
-	#Guest user can now modify, update or delete his comment.
-    #if not request.user.is_authenticated():
-        #return HttpResponse('Unauthorized', status=401)
-
+	#Guest user can now post his comment.
+    
     if request.method == "POST" and \
         request.is_ajax():
         comment = get_object_or_404(comments.get_model(), pk=comment_id, site__pk=settings.SITE_ID)
@@ -44,8 +42,7 @@ def delete_my_comment(request, comment_id):
     django.contrib.comments.views.moderation.delete()
     provides Moderators to perform this operation!
     """ 
-    if not request.user.is_authenticated():
-        return HttpResponse(status=401)
+   #Now guest users can delete their comments.
 
     if request.method == 'POST' and \
         request.is_ajax():

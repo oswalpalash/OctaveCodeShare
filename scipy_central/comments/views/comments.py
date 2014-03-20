@@ -30,20 +30,22 @@ def post_comment(request, using=None):
     django.contrib.comments.views.comments.post_comment() to make compatible with Ajax calls
     """
 	#Make Comments Available for non-registered users.
-    #if not request.user.is_authenticated():
-        #return HttpResponse('Unauthorized', status=401)
+    if not request.user.is_authenticated():
+		data["name"] = "Anonymous"
+        data["email"] = "example@gmail.com"
+        #return HttpResponse('Unauthorized', status=401) 
+		# Fill out some initial data fields from an authenticated user, if present
+	else if request.user.is_authenticated():
+        data = request.POST.copy()
+        data["name"] = request.user.get_full_name() or request.user.username
+        data["email"] = request.user.email
 
     if request.is_ajax():
         
         # response JSON object
         response = {'success': False}
-
-        # Fill out some initial data fields from an authenticated user, if present
-        data = request.POST.copy()
-        data["name"] = request.user.get_full_name() or request.user.username
-        data["email"] = request.user.email
-
-        # Look up the object we're trying to comment about
+		
+		# Look up the object we're trying to comment about
         ctype = data.get("content_type")
         object_pk = data.get("object_pk")
         if ctype is None or object_pk is None:

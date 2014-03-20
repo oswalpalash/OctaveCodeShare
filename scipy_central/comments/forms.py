@@ -6,11 +6,15 @@ from scipy_central.rest_comments.views import compile_rest_to_html
 from scipy_central.comments.models import SpcComment
 
 class SpcCommentForm(CommentForm):
-    # we want only comment field to be shown on the page
-    name = forms.CharField(label=_("Name"), max_length=50, widget=forms.HiddenInput())
-    email = forms.EmailField(label=_("Email address"), widget=forms.HiddenInput())
-    url = forms.URLField(label=("URL"), required=False, widget=forms.HiddenInput())
-
+    # we want only comment field to be shown on the page for signed in users.
+	if request.user.is_authenticated():
+		name = forms.CharField(label=_("Name"), max_length=50, widget=forms.HiddenInput())
+		email = forms.EmailField(label=_("Email address"), widget=forms.HiddenInput())
+		url = forms.URLField(label=("URL"), required=False, widget=forms.HiddenInput())
+	else if not request.user.is_authenticated():
+		name = forms.CharField(label=_("Name"), max_length=50, widget=forms.Input())
+		email = forms.EmailField(label=_("Email address"), widget=forms.Input())
+		url = forms.URLField(label=("URL"), required=False, widget=forms.Input())
     def get_comment_model(self):
         return SpcComment
 
